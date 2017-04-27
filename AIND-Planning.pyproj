@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3b54abfd-36f6-4ea4-94bc-fdeb8eb03195}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>tests\test_my_air_cargo_problems.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>Global|PythonCore|3.5</InterpreterId>
+    <IsWindowsApplication>False</IsWindowsApplication>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="aimacode\logic.py" />
+    <Compile Include="aimacode\planning.py" />
+    <Compile Include="aimacode\search.py" />
+    <Compile Include="aimacode\utils.py" />
+    <Compile Include="aimacode\__init__.py" />
+    <Compile Include="example_have_cake.py" />
+    <Compile Include="lp_utils.py" />
+    <Compile Include="my_air_cargo_problems.py" />
+    <Compile Include="my_planning_graph.py" />
+    <Compile Include="run_search.py" />
+    <Compile Include="tests\test_my_air_cargo_problems.py" />
+    <Compile Include="tests\test_my_planning_graph.py" />
+    <Compile Include="tests\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\eatcake-graphplan2.png" />
+    <Content Include="images\Progression.PNG" />
+    <Content Include="images\statespace.png" />
+    <Content Include="images\twotofive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="aimacode" />
+    <Folder Include="images" />
+    <Folder Include="tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.5" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

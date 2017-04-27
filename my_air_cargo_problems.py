@@ -35,7 +35,7 @@ class AirCargoProblem(Problem):
         self.airports = airports
         self.actions_list = self.get_actions()
 
-    def get_actions(self):
+    def get_actions(self) -> list:
         """
         This method creates concrete actions (no variables) for all actions in the problem
         domain action schema and turns them into complete Action objects as defined in the
@@ -54,25 +54,45 @@ class AirCargoProblem(Problem):
         # or 'Load(C2, P2, JFK)'.  The actions for the planning problem must be concrete because the problems in
         # forward search and Planning Graphs must use Propositional Logic
 
-        def load_actions():
+        def load_actions() -> list:
             """Create all concrete Load actions and return a list
 
             :return: list of Action objects
             """
             loads = []
-            # TODO create all load ground actions from the domain Load action
+            for a in self.airports:            
+                for c in self.cargos:
+                    for p in self.planes:
+                        precond_pos = [expr("At({}, {})".format(c, a)), expr("At({}, {})".format(p, a))]
+                        precond_neg = []
+                        effect_add = [expr("In({}, {})".format(c, p))]
+                        effect_rem = [expr("At({}, {})".format(c, a))]
+                        load = Action(expr("Load({}, {}, {})".format(c, p, a)),
+                                         [precond_pos, precond_neg],
+                                         [effect_add, effect_rem])
+                        loads.append(load)
             return loads
 
-        def unload_actions():
+        def unload_actions() -> list:
             """Create all concrete Unload actions and return a list
 
             :return: list of Action objects
             """
             unloads = []
-            # TODO create all Unload ground actions from the domain Unload action
+            for a in self.airports:            
+                for c in self.cargos:
+                    for p in self.planes:
+                        precond_pos = [expr("In({}, {})".format(c, p)), expr("At({}, {})".format(p, a))]
+                        precond_neg = []
+                        effect_rem = [expr("In({}, {})".format(c, a))]
+                        effect_add = [expr("At({}, {})".format(c, p))]
+                        unload = Action(expr("Unload({}, {}, {})".format(c, p, a)),
+                                         [precond_pos, precond_neg],
+                                         [effect_add, effect_rem])
+                        unloads.append(unload)
             return unloads
 
-        def fly_actions():
+        def fly_actions() -> list:
             """Create all concrete Fly actions and return a list
 
             :return: list of Action objects
@@ -103,8 +123,19 @@ class AirCargoProblem(Problem):
             e.g. 'FTTTFF'
         :return: list of Action objects
         """
-        # TODO implement
         possible_actions = []
+        kb = PropKB()
+        kb.tell(decode_state(state, self.state_map).pos_sentence())
+        for action in self.actions_list:
+            is_possible = True
+            for clause in action.precond_pos:
+                if clause not in kb.clauses:
+                    is_possible = False
+            for clause in action.precond_neg:
+                if clause in kb.clauses:
+                    is_possible = False
+            if is_possible:
+                possible_actions.append(action)
         return possible_actions
 
     def result(self, state: str, action: Action):
@@ -116,8 +147,20 @@ class AirCargoProblem(Problem):
         :param action: Action applied
         :return: resulting state after action
         """
-        # TODO implement
         new_state = FluentState([], [])
+        old_state = decode_state(state, self.state_map)
+        for fluent in old_state.pos:
+            if fluent not in action.effect_rem:
+                new_state.pos.append(fluent)
+        for fluent in action.effect_add:
+            if fluent not in new_state.pos:
+                new_state.pos.append(fluent)
+        for fluent in old_state.neg:
+            if fluent not in action.effect_add:
+                new_state.neg.append(fluent)
+        for fluent in action.effect_rem:
+            if fluent not in new_state.neg:
+                new_state.neg.append(fluent)
         return encode_state(new_state, self.state_map)
 
     def goal_test(self, state: str) -> bool:
