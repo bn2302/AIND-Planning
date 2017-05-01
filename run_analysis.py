@@ -12,7 +12,16 @@ from aimacode.search import (
     greedy_best_first_graph_search, depth_limited_search,
     recursive_best_first_search)
 from my_air_cargo_problems import air_cargo_p1, air_cargo_p2, air_cargo_p3
-from run_search import PROBLEMS, SEARCHES, PrintableProblem, show_solution
+from run_search import PROBLEMS,  PrintableProblem, show_solution
+
+SEARCHES = [
+    ["breadth_first_search", breadth_first_search, ""],
+    ['depth_first_graph_search', depth_first_graph_search, ""],
+    ['uniform_cost_search', uniform_cost_search, ""],
+    ['astar_search', astar_search, 'h_1'],
+    ['astar_search', astar_search, 'h_ignore_preconditions'],
+    ['astar_search', astar_search, 'h_pg_levelsum'],
+]
 
 
 def run_search(search, problem):
@@ -21,7 +30,8 @@ def run_search(search, problem):
     start = timer()
     ip = PrintableProblem(problem[1]())
     if search[2] != "":
-        node = search[1](ip, search[2])
+        h = getattr(ip, search[2])
+        node = search[1](ip, h)
     else:
         node = search[1](ip)
     end = timer()
