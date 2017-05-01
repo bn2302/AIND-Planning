@@ -181,7 +181,7 @@ class AirCargoProblem(Problem):
                 return False
         return True
 
-    def h_1(self, node: Node):
+    def h_1(self, node: Node):  # @UnusedVariable, due to heuristics API
         # note that this is not a true heuristic
         h_const = 1
         return h_const
@@ -205,9 +205,12 @@ class AirCargoProblem(Problem):
         conditions by ignoring the preconditions required for an action to be
         executed.
         """
-        # TODO implement (see Russell-Norvig Ed-3 10.2.3  or Russell-Norvig
-        # Ed-2 11.2)
         count = 0
+        kb = PropKB()
+        kb.tell(decode_state(node.state, self.state_map).pos_sentence())
+        for clause in self.goal:
+            if clause not in kb.clauses:
+                count += 1
         return count
 
 
