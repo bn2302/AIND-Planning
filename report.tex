@@ -3,6 +3,7 @@
 \usepackage{listings}
 \usepackage{booktabs}
 \usepackage{caption}
+
 \begin{document}
 
 
@@ -36,9 +37,11 @@ uniform\_cost\_search- & Problem 1 &         55 &         57 &       224 &      
 \end{footnotesize}
 \end{center}
 
-\begin{center}
-\captionof{plan_1}{Your caption here}
-\begin{footnotesize}
+\lstset{
+  caption=Plan for Problem 3, 
+  basicstyle=\footnotesize, frame=tb,
+  xleftmargin=.3\textwidth, xrightmargin=.2\textwidth
+}
 \begin{lstlisting}
 Load(C1, P1, SFO)
 Fly(P1, SFO, JFK)
@@ -47,12 +50,12 @@ Fly(P2, JFK, SFO)
 Unload(C1, P1, JFK)
 Unload(C2, P2, SFO)
 \end{lstlisting}
-\end{footnotesize}
-\end{center}
 
-\begin{center}
-\captionof{plan_2}{Your caption here}
-\begin{footnotesize}
+\lstset{
+  caption=Plan for Problem 2, 
+  basicstyle=\footnotesize, frame=tb,
+  xleftmargin=.3\textwidth, xrightmargin=.2\textwidth
+}
 \begin{lstlisting}
 Load(C1, P1, SFO)
 Fly(P1, SFO, JFK)
@@ -64,12 +67,12 @@ Unload(C3, P3, SFO)
 Unload(C2, P2, SFO)
 Unload(C1, P1, JFK) 
 \end{lstlisting}
-\end{footnotesize}
-\end{center}
 
-\begin{center}
-\captionof{plan_3}{Your caption here}
-\begin{footnotesize}
+\lstset{
+  caption=Plan for Problem 3, 
+  basicstyle=\footnotesize, frame=tb,
+  xleftmargin=.2\textwidth, xrightmargin=.2\textwidth
+}
 \begin{lstlisting}
 Load(C2, P2, JFK)
 Fly(P2, JFK, ORD)
@@ -84,7 +87,5 @@ Unload(C3, P1, JFK)
 Unload(C2, P2, SFO)
 Unload(C1, P1, JFK) 
 \end{lstlisting}
-\end{footnotesize}
-\end{center}
 
 \end{document}
