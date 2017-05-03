@@ -29,7 +29,7 @@ effects. Here, the major result of planning research are briefly reviewed.
 
 First planning algorithms were state-space search algorithms. Breadth first
 search can be traced back to dynamic programming \cite{bellman}. Uniformed cost
-search to the Dijkstra's shortest path algorithm \cite{dijkstra}. These
+search to the Dijkstra's shortest path algorithm \cite{cormen}. These
 algorithms, being uninformed in nature, all suffered from the curse of
 dimensionality. Considering the computers of the 1960's this was a huge burden
 for using those algorithms at this time.
@@ -45,14 +45,15 @@ A* search and similar algorithms.
 
 In the 1970's, one of the first planning systems, \textsc{Strips}, introduced a
 formal domain independent language for the description of planning problems
-\cite{strips}. \textsc{Strips} was already remarkably close to \textsc{PDDL} 
-\cite{pddl}, a planning problem description language still in use today.
+\cite{strips}. \textsc{Strips} was already remarkably close to 
+\textsc{PDDL} \cite{pddl}, a planning problem
+description language from the 1990's.
 Theses planning languages provided the basis for algorithms that exploited the
 formal abstraction for the design of automatic planning heuristics.  
 
 \textsc{Satplan} transforms the planning problem into boolean satisfiability
-problems, which are also commonly solved in circuit design or automatic theorem
-proving. This satisfiability problem is then solved algorithms such as the
+problems \cite{satplan}, which are also commonly solved in circuit design or
+automatic theorem proving. This satisfiability problem is then solved algorithms such as the
 Davis-Putnam-Logemann-Loveland algorithm \cite{dpll}. \textsc{Graphplan}
 iteratively expands the planning problem into a directed graph, where the nodes
 are actions and atomic facts (states)\cite{graphplan}. By introducing

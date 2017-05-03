@@ -5,13 +5,43 @@
 \usepackage{caption}
 
 \begin{document}
+\title{Project 3: Implement a planning search  \\ Research report}
+\author{Batian Niebel}
+\date{\today}
+\maketitle
 
+\paragraph*{Implementation}
+The loading \& unloading actions, level-sum heuristics, and problem 1-3 were
+implemented in \texttt{my\_air\_cargo\_problems.py} . The methods required to
+build the planning graph algorithm were implemented in
+\texttt{my\_planning\_graph.py}. The implementation was tested using the
+provided unit tests.
 
-To compare the different problems we first run all
+The different algorithms together with problem 1-3 were compared using
+\texttt{run\_analysis.py}. The results were stored in
+\texttt{search\_result.json} and further processed with the ipython notebook
+\texttt{analyze\_results.ipynb}.
 
-Say what has been done, link sources
+\paragraph*{Analysis of the results}
+All searches except the breadth first search yielded the same path length for
+the individual problems (cf. table \ref{tab:overview}). The optimal plans for
+the problems (cf listing \ref{lst:plan1}, \ref{lst:plan2} \& \ref{lst:plan3}) was taken from
+the A* search with the planning graph and level-sum heuristics.
+
+The planning graph implementation took exceptionally long, probably due to a not
+optimized implementation and the small size of the problems. The overhead of the
+planning graph does not out weight the uniformed searches. However the planning
+graph shined as expected in the number of expanded nodes, thus if node
+expansion gets more expensive (larger problems) it is for sure a feasible
+option.
+
+In general the A* search with the level sum heuristics performed best. The depth first search
+found not the optimal solutions, due to its tendency to get stuck in local
+minimum, when not further expanding certain trees, it is a poor choice for these
+kind of planning problems.
+
 \begin{center}
-\captionof{table}{Your caption here}
+\captionof{table}{Overview of all results}\label{tab:overview}
 \begin{footnotesize}
 \begin{tabular}{lllllll}
 \toprule
@@ -38,10 +68,11 @@ uniform\_cost\_search- & Problem 1 &         55 &         57 &       224 &      
 \end{center}
 
 \lstset{
-  caption=Plan for Problem 3, 
+  caption=Plan for Problem 1\label{lst:plan1}, 
   basicstyle=\footnotesize, frame=tb,
-  xleftmargin=.3\textwidth, xrightmargin=.2\textwidth
-}
+  xleftmargin=.2\textwidth, xrightmargin=.2\textwidth
+  }
+
 \begin{lstlisting}
 Load(C1, P1, SFO)
 Fly(P1, SFO, JFK)
@@ -51,10 +82,12 @@ Unload(C1, P1, JFK)
 Unload(C2, P2, SFO)
 \end{lstlisting}
 
+\newpage
+
 \lstset{
-  caption=Plan for Problem 2, 
+  caption=Plan for Problem 2 \label{lst:plan2}, 
   basicstyle=\footnotesize, frame=tb,
-  xleftmargin=.3\textwidth, xrightmargin=.2\textwidth
+  xleftmargin=.2\textwidth, xrightmargin=.2\textwidth
 }
 \begin{lstlisting}
 Load(C1, P1, SFO)
@@ -69,7 +102,7 @@ Unload(C1, P1, JFK)
 \end{lstlisting}
 
 \lstset{
-  caption=Plan for Problem 3, 
+  caption=Plan for Problem 3\label{lst:plan3}, 
   basicstyle=\footnotesize, frame=tb,
   xleftmargin=.2\textwidth, xrightmargin=.2\textwidth
 }
