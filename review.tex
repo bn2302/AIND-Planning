@@ -7,6 +7,8 @@
 \begin{document}
 
 \title{Methods in planning  \\ A historic review}
+\author{Batian Niebel}
+\date{\today}
 
 \maketitle
 
@@ -15,59 +17,64 @@
 Interest in using intelligent algorithms for solving planning problems arose
 with the advent of computers. Linear programming, which can also be seen as
 planning under linear constraints, was used heavily during the Second World War
-\cite{linear_prog}. It allowed to develop optimal plans for resource allocation.
-But the short comings imposed by linear programming, only linear
-constraints and continous variables, lead to the development of
+\cite{linearprog}. It allowed developing optimal plans for resource allocation.
+But the shortcomings imposed by linear programming, only linear
+constraints and continuous variables, lead to the development of
 algorithms that overcame these burdens. These algorithms put planning to the
 next level. These algorithms allowed for logical constraints,
-discontinous states spaces, infinite planning horizons and probabilistic
-effects. Here, the major result in planning research are briefly review.
+discontinuous states spaces, infinite planning horizons and probabilistic
+effects. Here, the major result of planning research are briefly reviewed.
 
 \paragraph*{Direct state search}
 
-First planning algorithms were state space search algorithms. Breath first
-search can be traced back to dynamic programming {Bellman}. Uniformed cost
-search to the Dijkstra's shortest path algorithm. These algorithms, being
-uniformed in nature, all suffered from the curse of dimensionality. Considering
-the computers of the 1960's this was a huge burden for using those algorithms
-at this time.
+First planning algorithms were state-space search algorithms. Breadth first
+search can be traced back to dynamic programming \cite{bellman}. Uniformed cost
+search to the Dijkstra's shortest path algorithm \cite{dijkstra}. These
+algorithms, being uninformed in nature, all suffered from the curse of
+dimensionality. Considering the computers of the 1960's this was a huge burden
+for using those algorithms at this time.
 
-A* search, which used a heuristic function to approximate the distance to the
-goal, proved very successful in overcoming the limitations of uniformed search.
-But coming up with a good heuristics required human intelligence.
-Thus the next improvement of artificial intelligence was the development of
-algorithms that automatically device a heuristics.
+A* search \cite{a_star}, which used a heuristic function to approximate the
+distance to the goal, proved very successful in overcoming the limitations of 
+uninformed search algorithms. But coming up with a good heuristics required
+human intelligence. Thus the next improvement of artificial intelligence was the
+development of algorithms that automatically device heuristics for the use in
+A* search and similar algorithms.
 
 \paragraph*{Planning systems}
 
-First planning system was Strips providing, being remarkably close to more
-modern planning languages, it provided the frist planning language. Allowing
-this level of abstraction of problems on machines was a milestone at that time
+In the 1970's, one of the first planning systems, \textsc{Strips}, introduced a
+formal domain independent language for the description of planning problems
+\cite{strips}. \textsc{Strips} was already remarkably close to \textsc{PDDL} 
+\cite{pddl}, a planning problem description language still in use today.
+Theses planning languages provided the basis for algorithms that exploited the
+formal abstraction for the design of automatic planning heuristics.  
 
-Warplan was a milestone in the development of planners. Written in PROLOG, a
-logical programming language it was comparable short 100 lines of code compared
-to earlier planning algorithms. Also, did it allow for interleaving, which was
-introduced by REF. 
+\textsc{Satplan} transforms the planning problem into boolean satisfiability
+problems, which are also commonly solved in circuit design or automatic theorem
+proving. This satisfiability problem is then solved algorithms such as the
+Davis-Putnam-Logemann-Loveland algorithm \cite{dpll}. \textsc{Graphplan}
+iteratively expands the planning problem into a directed graph, where the nodes
+are actions and atomic facts (states)\cite{graphplan}. By introducing
+constraints which exclude mutually exclusive nodes, \textsc{Graphplan} expands
+the state space into the direction of possible solutions, thus allowing for
+planning in large state spaces.
 
-Satplan
-
-Graphplan was one major improvment to previous planning systems. It allowed for
-the 
-
-\paragraph*{Binary decision diagrams}
+\paragraph*{Other planners}
 
 Another field of planning is the usage of boolean algebra. Here, also integer
 programming can be used, providing excellent algorithms for complex and large
-state spaces, such as IBM's ILog solvers.
+state spaces, such as IBM's ILog solvers \cite{ilog}. Markov decision processes
+allow developing planning algorithms considering uncertainty \cite{mdp}. 
 
 \paragraph*{Conclusion \& outlook}
 
 Although 60 years old, planning is a very active field in artificial
 intelligence. The description of complex problems in very defined high level
-languages, such as PDDL, allows to create very efficient algorithms to
+languages, such as \textsc{PDDL}, allows to create very efficient algorithms to
 automatically find solutions in extremely large state spaces. It will be
 interesting to see, how planning will benefit, and also fuel methods such as
-deep neural nets and deep reinforcement learning.
+deep neural nets and deep reinforcement learning in the near future.
 
 \printbibliography
 \end{document}

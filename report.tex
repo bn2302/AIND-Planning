@@ -2,11 +2,15 @@
 \usepackage[letterpaper, top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
 \usepackage{listings}
 \usepackage{booktabs}
+\usepackage{caption}
 \begin{document}
+
+
 To compare the different problems we first run all
 
 Say what has been done, link sources
-
+\begin{center}
+\captionof{table}{Your caption here}
 \begin{footnotesize}
 \begin{tabular}{lllllll}
 \toprule
@@ -29,7 +33,12 @@ uniform\_cost\_search- & Problem 1 &         55 &         57 &       224 &      
                  & Problem 3 &      18236 &      18238 &    158317 &          12 &      61.8446 \\
 \bottomrule
 \end{tabular}
+\end{footnotesize}
+\end{center}
 
+\begin{center}
+\captionof{plan_1}{Your caption here}
+\begin{footnotesize}
 \begin{lstlisting}
 Load(C1, P1, SFO)
 Fly(P1, SFO, JFK)
@@ -38,7 +47,12 @@ Fly(P2, JFK, SFO)
 Unload(C1, P1, JFK)
 Unload(C2, P2, SFO)
 \end{lstlisting}
+\end{footnotesize}
+\end{center}
 
+\begin{center}
+\captionof{plan_2}{Your caption here}
+\begin{footnotesize}
 \begin{lstlisting}
 Load(C1, P1, SFO)
 Fly(P1, SFO, JFK)
@@ -50,7 +64,12 @@ Unload(C3, P3, SFO)
 Unload(C2, P2, SFO)
 Unload(C1, P1, JFK) 
 \end{lstlisting}
+\end{footnotesize}
+\end{center}
 
+\begin{center}
+\captionof{plan_3}{Your caption here}
+\begin{footnotesize}
 \begin{lstlisting}
 Load(C2, P2, JFK)
 Fly(P2, JFK, ORD)
@@ -66,5 +85,6 @@ Unload(C2, P2, SFO)
 Unload(C1, P1, JFK) 
 \end{lstlisting}
 \end{footnotesize}
+\end{center}
 
 \end{document}
