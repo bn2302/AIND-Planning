@@ -41,10 +41,11 @@ In general the A* search with the level sum heuristics performed best. The depth
 found not the optimal solutions, due to its tendency to get stuck in local
 minimum, when not further expanding certain trees, it is a poor choice for these
 kind of planning problems \cite{russell_92}. The A* star heuristics doesn't have
-this problem since the level sum heuristics is an admissable heuristics, i.e. it never
-overestimates the cost, and the planning graph heuristics is also consistent,
-therefore it fullfills the optimality condition \cite{russell_94}. Also the
-breadth first and uniform cost search are optimal \cite{russell_92}.
+this problem, because the level-sum is an admissible heuristics and the
+planning graph heuristics is an consistent heuristics, therefore it fulfills the
+optimality condition \cite{russell_94}. The two other uninformed
+heuristics: breadth first \& uniform cost search, are also optimal
+\cite{russell_92}.
 
 \begin{center}
 \captionof{table}{Overview of all results}\label{tab:overview}
